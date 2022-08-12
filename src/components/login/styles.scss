@@ -1,0 +1,25 @@
+.login-wrapper{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title{
+  font-family: "Arial", -apple-system, serif;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+input{
+  height: 40px;
+  border-radius: 2px;
+  margin: 10px 0;
+  border: grey 1px solid;
+  font-size: 15px;
+}
+.errorText{
+  color: red;
+  margin: 0;
+  font-size: 12px;
+}
