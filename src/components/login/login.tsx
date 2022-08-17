@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './styles.scss';
 import db from './db.json';
 
-type LoginProps = {};
+type LoginProps = {
+  setData: any;
+};
 const emailRegex =
   /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
-const passRegexUpper = /(^(?=.*[A-Z]))/;
+const passRegexUpper = /(^(?=.*[A-Z-Ñ]))/;
 const passRegexNumber = /(^(?=.*[0-9]))/;
 function Login(props: LoginProps) {
   const [validEmail, setEmailValid] = useState(true);
@@ -33,23 +35,33 @@ function Login(props: LoginProps) {
       setErrorTextPass('');
     }
   };
-  const submit = () => console.log(name, pass);
+  const submit = () => props.setData([{ name, pass, group }]);
+
   // @ts-ignore
   const texts = db[group];
   return (
     <div>
       <div className='login-wrapper'>
         <p className='title'>{texts.title}</p>
-        <input
-          onBlur={(event) => isEmail(event)}
-          className='mail'
-          type='email'
-          placeholder={db.mail}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <div className='inputWrap'>
+          <input
+            id='email'
+            onBlur={(event) => isEmail(event)}
+            className={!validEmail ? 'redInput' : ''}
+            type='email'
+            placeholder={db.mail}
+            onChange={(e) => setName(e.target.value)}
+          />
+          {!validEmail && (
+            <p className='show'>
+              <img src='https://www.segundamano.mx/static/img/Icon_UI_Error.484e8b00.svg' />
+            </p>
+          )}
+        </div>
         {!validEmail && <p className='errorText'>Por favor ingresa un email valido</p>}
         <div className='inputWrap'>
           <input
+            className={errorTextPass ? 'redInput' : ''}
             onBlur={(event) => isValidPass(event)}
             type={showPass ? 'text' : 'password'}
             placeholder={db.pass}
@@ -63,6 +75,7 @@ function Login(props: LoginProps) {
         {group === 'signUp' && (
           <div className='inputWrap'>
             <input
+              className={errorPassRepeat ? 'redInput' : ''}
               onChange={(e) => setRepeatPass(e.target.value)}
               type={showPass ? 'text' : 'password'}
               placeholder={texts.repeatPass}
