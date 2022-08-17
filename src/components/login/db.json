@@ -1,0 +1,23 @@
+{
+  "mail": "Tu correo electronico",
+  "pass": "Tu contraseña",
+  "show": "Mostrar",
+  "hide": "Ocultar",
+  "signIn": {
+    "title": "Inicia sesión",
+    "pass": "Ingresa tu contraseña",
+    "button": "Entrar",
+    "question": "¿No tienes cuenta?",
+    "link": "Crea una nueva",
+    "to": "signUp"
+  },
+  "signUp": {
+    "title": "Crea una cuenta",
+    "repeatPass": "Repite tu contraseña",
+    "button": "Crea una cuenta",
+    "question": "¿Ya tienes cuenta?",
+    "link": "Inicia sesión",
+    "to": "signIn"
+
+  }
+}
